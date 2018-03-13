@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/svAddMovieDetails"
+        android:layout_below="@+id/rl_top_control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/activity_medium_margin"
+            android:paddingLeft="@dimen/activity_medium_margin"
+            android:paddingRight="@dimen/activity_medium_margin"
+            android:paddingStart="@dimen/activity_medium_margin">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/number_of_tickets_field_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/small_margin"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="30"
+                    app:errorEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/number_of_tickets_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/number_of_tickets"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789"
+                        android:lines="1"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
+
+                <Spinner
+                    android:id="@+id/weekday_spinner"
+                    style="@android:style/Widget.Holo.Light.Spinner"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="4dp"
+                    android:entries="@array/weekday_options">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/llReal3D"
+                android:layout_marginBottom="@dimen/small_margin">
+                <CheckBox
+                    android:id="@+id/checkBoxReal3D"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/real3d"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#276ca4"
+                    android:checked="false"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/real3d_extra_price"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/llImax"
+                android:layout_marginBottom="@dimen/activity_medium_margin">
+                <CheckBox
+                    android:id="@+id/checkBoxImax"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/imax_extra"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#276ca4"
+                    android:checked="false"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/imax_extra_price"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTotalPriceNewTickets"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="@dimen/activity_medium_margin"
+                android:textColor="@android:color/black"
+                tools:text="Total Price is X GBP for X Tickets"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSavingsNewTickets"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginBottom="@dimen/activity_medium_margin"
+                android:textColor="#AFBB0000"
+                tools:text="Today you saved X GBP"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_top_control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:colorBackground">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/divider_mid_picture"
+            android:layout_marginBottom="-60dp"
+            android:background="#FFF1F1F1"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_buttons_bar"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <FrameLayout
+                android:id="@+id/close_new_tickets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_medium_margin"
+                    android:layout_gravity="start"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/ic_close"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:text="@string/new_movie_tickets"/>
+
+            <FrameLayout
+                android:id="@+id/accept_new_tickets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_medium_margin"
+                    android:layout_gravity="end"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/ic_check"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/divider_mid_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_below="@id/ll_buttons_bar"
+            android:src="@drawable/ic_horizontal_divider"
+            tools:ignore="ContentDescription" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@id/ll_buttons_bar"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_default_movie"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFFFFFFF"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

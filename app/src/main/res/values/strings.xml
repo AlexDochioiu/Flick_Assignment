@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Flick Assignment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_movie_tickets">New Movie Tickets</string>
+    <string name="number_of_tickets">Number of Tickets</string>
+    <string name="imax_extra">IMAX Extra</string>
+    <string name="imax_extra_price">( Extra £1.50 Per Ticket )</string>
+    <string name="real3d">Real3D</string>
+    <string name="real3d_extra_price">( Extra £0.90 Per Ticket )</string>
+
+    <string name="total_price_new_tickets">Total Price is £%1$.2f for %2$d Tickets</string>
+    <string name="today_saving_new_tickets">Total Saving of £%1$.2f</string>
+
+    <string-array name="weekday_options">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
 </resources>
