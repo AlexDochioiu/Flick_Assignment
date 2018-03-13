@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements IItemLongClickLis
         rvOrderedMovies.setAdapter(orderedMovieAdapter);
 
         OverScrollDecoratorHelper.setUpOverScroll(rvOrderedMovies, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        updateTotalPriceAndDiscount();
     }
 
     @OnClick(R.id.fabAddTicket)
