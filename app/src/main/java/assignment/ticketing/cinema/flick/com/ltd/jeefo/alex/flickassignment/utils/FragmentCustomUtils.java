@@ -14,6 +14,18 @@ import android.util.Log;
 
 public class FragmentCustomUtils {
     private static final String LOG_TAG = "FragmentCustomUtils";
+
+    /**
+     * Method used for creating and displaying a fragment (it replaces what's on the
+     * fragment manager entirely)
+     * @param fragmentManager the fragment manager used for the transaction
+     * @param fragmentClass the fragment class to be displayed
+     * @param fragmentTag the tag for the fragment
+     * @param containerViewId the container where it's going to be displayed
+     * @param data the bundle to be passed on creation
+     * @param addToBackStack whether we want the fragment added to the back stack
+     * @return the Fragment that's been created and displayed
+     */
     @Nullable
     public static Fragment createFragment(
             @NonNull FragmentManager fragmentManager,

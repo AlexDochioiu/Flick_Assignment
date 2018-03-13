@@ -39,6 +39,11 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
  * Created by Alex on 13/03/18.
  */
 
+/**
+ * A simple {@link Fragment} subclass used for finishing a movie order. We get here after a
+ * movie is selected in {@link SelectMovieFragment}. Here we select the day for the movie and
+ * the number of tickets we desire to purchase
+ */
 public class SelectMovieDetailsFragment extends Fragment {
 
     public static final String TAG = "SelectMovieDetails";
@@ -99,6 +104,7 @@ public class SelectMovieDetailsFragment extends Fragment {
         if (bundle != null) {
             movie = (Movie) bundle.getSerializable(MOVIE_BUNDLE);
             if (movie != null) {
+                // If there's a movie poster, set it to the image view
                 if (movie.hasPoster()) {
                     Picasso.with(getContext()).load(movie.getPosterPath()).fit().centerCrop().into(profileImage);
                 }
@@ -113,6 +119,8 @@ public class SelectMovieDetailsFragment extends Fragment {
             getActivity().finish();
         }
 
+        // When a new day is selected, check again for discounts and offers.
+        // TODO: This should actually use dates, not weekdays; However, I think this is good enough for this assignment
         weekdaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -129,7 +137,8 @@ public class SelectMovieDetailsFragment extends Fragment {
             }
         });
 
-        // I could actually add the checkboxes programmatically instead of just showing and hiding them
+        // I could actually add the checkboxes programmatically instead of just showing and hiding
+        // the ones added in the xml layout
         setUpCheckBox(TicketExtra.IMAX.getFlag(), checkBoxImax, llImax);
         setUpCheckBox(TicketExtra.Real3D.getFlag(), checkBoxReal3D, llReal3D);
         numberOfTicketsField.setText("1");
@@ -139,6 +148,14 @@ public class SelectMovieDetailsFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Method used for displaying the available checkbox for the extras that apply to our movie.
+     * It also sets the listener for the checkbox to update the price when it is pressed.
+     * @param flag the flag that is being changed when this checkbox is pressed
+     * @param checkBox the checkbox we are registering the listener to
+     * @param llCheckBox the linear layout that we would hide if the checkbox does not apply to
+     *                   the movie we are dealing with
+     */
     private void setUpCheckBox(final int flag, CheckBox checkBox, LinearLayout llCheckBox) {
         if ((movie.getAvailableExtras() & flag) != 0) {
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -153,6 +170,9 @@ public class SelectMovieDetailsFragment extends Fragment {
         }
     }
 
+    /**
+     * Method used for updating the TextViews with the final price and total saving
+     */
     private void updatePriceAndSaving() {
         movieOrder = new MovieOrder(movie, Weekday.weekdayForValue(selectedDay), flagsApplied, numberOfTickets);
 
@@ -168,6 +188,10 @@ public class SelectMovieDetailsFragment extends Fragment {
         ));
     }
 
+    /**
+     * A listener for when the number of tickets is changed by the user
+     * @param text the new entry for the number of tickets field
+     */
     @OnTextChanged(R.id.number_of_tickets_field)
     public void onTicketsNumberChanged(@Nullable CharSequence text) {
         if (text == null || text.toString().equals("")) {
@@ -176,6 +200,8 @@ public class SelectMovieDetailsFragment extends Fragment {
             try {
                 numberOfTickets = Integer.parseInt(text.toString());
             } catch (NumberFormatException e) {
+                // theoretically we should never end up here cause I limited the input for this
+                // field to be only digits
                 Log.e(TAG, "Failed to parse string to int: " + text.toString());
                 Toast.makeText(getContext(), "Please enter a valid number of tickets", Toast.LENGTH_SHORT).show();
                 numberOfTickets = 0;
@@ -190,12 +216,19 @@ public class SelectMovieDetailsFragment extends Fragment {
         unbinder.unbind();
     }
 
+    /**
+     * Listener for when the close button is pressed. It returns us to the main activity.
+     */
     @OnClick(R.id.close_new_tickets)
     public void onCloseNewTickets() {
         getActivity().setResult(Activity.RESULT_CANCELED);
         getActivity().finish();
     }
 
+    /**
+     * Listener for when we press the accept button (top right). If all entries are valid, we
+     * put the order into a bundle and return it to the main activity
+     */
     @OnClick(R.id.accept_new_tickets)
     public void onAcceptNewTickets() {
         if (numberOfTicketsField.getText() == null || numberOfTicketsField.getText().toString().equals("")) {

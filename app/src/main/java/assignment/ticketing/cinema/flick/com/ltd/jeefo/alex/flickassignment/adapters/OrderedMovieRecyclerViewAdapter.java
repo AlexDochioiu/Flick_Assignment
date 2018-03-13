@@ -26,11 +26,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Alex on 13/03/18.
  */
 
+/**
+ * RecyclerView Adapter used for displaying the movie orders which include the number of tickets and the
+ * desired weekday
+ */
 public class OrderedMovieRecyclerViewAdapter extends RecyclerView.Adapter<OrderedMovieRecyclerViewAdapter.ViewHolder>{
     private final List<MovieOrder> movieOrders;
     private final Context context;
     private final IItemLongClickListener itemLongClickListener;
 
+    /**
+     * Constructor
+     * @param context the context where the recyclerview is displayed
+     * @param itemLongClickListener the listener used for announcing the fragment that a long click event happened.
+     *                              It is used only for allowing the removal of an order
+     */
     public OrderedMovieRecyclerViewAdapter(Context context, IItemLongClickListener itemLongClickListener) {
         this.movieOrders = new LinkedList<>();
         this.context = context;
@@ -72,16 +82,28 @@ public class OrderedMovieRecyclerViewAdapter extends RecyclerView.Adapter<Ordere
         return movieOrders.size();
     }
 
+    /**
+     * Method used for adding a new movie order to the RV Adapter
+     * @param movieOrder the movie order to be added
+     */
     public void addMovieOrder(MovieOrder movieOrder) {
         movieOrders.add(movieOrder);
         notifyItemInserted(getItemCount() - 1);
     }
 
+    /**
+     * Method used for the removal of a movie order from the adapter
+     * @param itemPosition the position of the order to be removed
+     */
     public void removeItem(int itemPosition) {
         movieOrders.remove(itemPosition);
         notifyItemRemoved(itemPosition);
     }
 
+    /**
+     * Calculates the total price after discounts and offers are applied for all the movie orders
+     * @return the total price
+     */
     public double getTotalPrice() {
         double totalPrice = 0;
         for (MovieOrder movieOrder : movieOrders) {
@@ -90,6 +112,10 @@ public class OrderedMovieRecyclerViewAdapter extends RecyclerView.Adapter<Ordere
         return totalPrice;
     }
 
+    /**
+     * Calculates the total number of tickets offered after offers are applied for all the movie orders
+     * @return the total number of tickets to be purchased
+     */
     public int getTotalTickets() {
         int totalTickets = 0;
         for (MovieOrder movieOrder : movieOrders) {
@@ -98,6 +124,10 @@ public class OrderedMovieRecyclerViewAdapter extends RecyclerView.Adapter<Ordere
         return totalTickets;
     }
 
+    /**
+     * Calculates the total absolute saving after discounts and offers are applied for all the movie orders
+     * @return the total discount in currency
+     */
     public double getTotalSaving() {
         double totalSaving = 0;
         for (MovieOrder movieOrder : movieOrders) {

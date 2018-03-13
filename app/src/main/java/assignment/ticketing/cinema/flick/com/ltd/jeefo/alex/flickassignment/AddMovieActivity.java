@@ -23,6 +23,9 @@ public class AddMovieActivity extends AppCompatActivity {
         showMovieListFragment();
     }
 
+    /**
+     * Creates the {@link SelectMovieFragment} and displays it
+     */
     private void showMovieListFragment() {
         currentFragment = FragmentCustomUtils.createFragment(
                 getSupportFragmentManager(),
@@ -34,7 +37,12 @@ public class AddMovieActivity extends AppCompatActivity {
         );
     }
 
-
+    /**
+     * Once a movie is selected on {@link SelectMovieFragment}, this changes the fragment to
+     * {@link SelectMovieDetailsFragment} where we can finish the order by adding the number
+     * of tickets we desire and the day
+     * @param movie the movie that was selected for the order
+     */
     public void OnMovieSelected(Movie movie) {
         Intent intent = new Intent();
         intent.putExtra(SelectMovieDetailsFragment.MOVIE_BUNDLE, movie);
@@ -49,6 +57,9 @@ public class AddMovieActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Required mainly to avoid going back to the blank activity (with no fragment displayed)
+     */
     @Override
     public void onBackPressed() {
         if (currentFragment == null || currentFragment.getTag().equals(SelectMovieFragment.FRAGMENT_NAME)) {

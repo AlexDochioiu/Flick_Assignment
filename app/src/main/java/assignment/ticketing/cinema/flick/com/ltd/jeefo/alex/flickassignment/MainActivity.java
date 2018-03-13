@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements IItemLongClickLis
         updateTotalPriceAndDiscount();
     }
 
+    /**
+     * Called when the floating action button is pressed. Used for adding new tickets.
+     */
     @OnClick(R.id.fabAddTicket)
     public void onViewClicked() {
         Intent intent = new Intent(this, AddMovieActivity.class);
@@ -80,11 +83,19 @@ public class MainActivity extends AppCompatActivity implements IItemLongClickLis
         }
     }
 
+    /**
+     * Once we receive the order for a movie, we add it to our recycler view and update the
+     * the total price and discount
+     * @param movieOrder the new movie order to be added
+     */
     private void addMovieOrderToAdapter(MovieOrder movieOrder) {
         orderedMovieAdapter.addMovieOrder(movieOrder);
         updateTotalPriceAndDiscount();
     }
 
+    /**
+     * Updates the total price and discount
+     */
     private void updateTotalPriceAndDiscount() {
         tvOrderPrice.setText(getResources().getString(
                 R.string.total_price_new_tickets,
@@ -97,6 +108,10 @@ public class MainActivity extends AppCompatActivity implements IItemLongClickLis
         ));
     }
 
+    /**
+     * Method used for allowing the deletion of a movie order
+     * @param itemPosition the position in list of the movie order we want to remove
+     */
     @Override
     public void onLongClick(final int itemPosition) {
         final CharSequence options[] = new CharSequence[]{"Remove Entry", "Return"};

@@ -24,15 +24,25 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Alex on 13/03/18.
  */
 
+/**
+ * RecyclerView Adapter used for displaying the movies available and the ticket price for them with no
+ * discount or offer applied
+ */
 public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder>{
     private final List<Movie> movies;
     private final Context context;
     private final IItemClickListener selectorListener;
 
-    public MovieRecyclerViewAdapter(Context context, IItemClickListener selectorListener, List<Movie> movies) {
+    /**
+     * Constructor
+     * @param context the context where the recyclerview is displayed
+     * @param itemClickListener the listener used for announcing the fragment when an item was selected
+     * @param movies the list of movies to be displayed
+     */
+    public MovieRecyclerViewAdapter(Context context, IItemClickListener itemClickListener, List<Movie> movies) {
         this.movies = movies;
         this.context = context;
-        this.selectorListener = selectorListener;
+        this.selectorListener = itemClickListener;
         Picasso.with(context).setLoggingEnabled(true);
     }
 
@@ -66,10 +76,18 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
         return movies.size();
     }
 
+    /**
+     * Method used for obtaining the movie at a selected position
+     * @param position the position in the RV Adapter
+     * @return the selected movie
+     */
     public Movie getMovie(int position) {
         return movies.get(position);
     }
 
+    /**
+     * The ViewHolder for the RecyclerView Adapter
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.ivMovie)
         CircleImageView ivMovieImage;

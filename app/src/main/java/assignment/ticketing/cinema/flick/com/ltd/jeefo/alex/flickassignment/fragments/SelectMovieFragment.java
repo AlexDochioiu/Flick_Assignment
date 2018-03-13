@@ -24,7 +24,8 @@ import butterknife.Unbinder;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass used for displaying a RecyclerView Adapter containing all the
+ * movies and the base price for them. It allows us to select a movie and continue with the order.
  */
 public class SelectMovieFragment extends Fragment implements IItemClickListener {
 
@@ -58,6 +59,10 @@ public class SelectMovieFragment extends Fragment implements IItemClickListener 
         return view;
     }
 
+    /**
+     * This is just for demonstration purposes
+     * @return a mock list of movies to be added to adapter
+     */
     private List<Movie> getMockMoviesList() {
         List<Movie> movies = new ArrayList<>();
         int withNoExtra = 0;
@@ -73,6 +78,11 @@ public class SelectMovieFragment extends Fragment implements IItemClickListener 
         return movies;
     }
 
+    /**
+     * This is called by the RecyclerView Adapter once a movie is selected. We then pass the
+     * selected movie to the Activity and continue with the order from there.
+     * @param itemPosition the position in the RV Adapter for the selected movie
+     */
     @Override
     public void onItemSelected(int itemPosition) {
         ((AddMovieActivity) getActivity()).OnMovieSelected(movieAdapter.getMovie(itemPosition));

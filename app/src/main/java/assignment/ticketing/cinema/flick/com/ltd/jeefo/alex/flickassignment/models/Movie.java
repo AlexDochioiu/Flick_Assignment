@@ -11,6 +11,9 @@ import assignment.ticketing.cinema.flick.com.ltd.jeefo.alex.flickassignment.mode
  * Created by Alex on 13/03/18.
  */
 
+/**
+ * Class used for managing each Movie
+ */
 public class Movie implements Serializable {
     private final String id;
     private final String title;
@@ -48,6 +51,15 @@ public class Movie implements Serializable {
         return posterPath != null;
     }
 
+    /**
+     * Constructor
+     * @param id unique id to identify the movie
+     * @param title the title of the movie
+     * @param overview the overview of the movie
+     * @param posterPath the path for obtaining the poster online
+     * @param ticketType the type of the ticket available for it (assumes only 1 type is available at once)
+     * @param availableExtras the combination of flags for the available extras
+     */
     public Movie(
             @NonNull String id,
             @NonNull String title,
