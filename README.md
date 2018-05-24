@@ -1,8 +1,8 @@
 # Cinema Tickets Exercise (Android API 15+)
 
 ## Backgroud Info about the project
-**The project was fully done in exactly 5 hours, being part of a technical assessment for an Android Position**
-**It can be installed from play store:** https://play.google.com/store/apps/details?id=assignment.ticketing.cinema.flick.com.ltd.jeefo.alex.flickassignment
+* **The project was fully done in exactly 5 hours, being part of a technical assessment for an Android Position**
+* **It can be found on play store:** https://play.google.com/store/apps/details?id=assignment.ticketing.cinema.flick.com.ltd.jeefo.alex.flickassignment
 
 ## Description
 Checkout system that can calculate the total cost of a combination of movie tickets that a user might buy using the app.
